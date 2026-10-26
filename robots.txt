@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lumina-gradients.vercel.app/sitemap.xml
+Sitemap: https://mahesh-yennam.github.io/Lumina-Gradients-studio/sitemap.xml

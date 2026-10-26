@@ -2,6 +2,11 @@
 
 > Next-Generation GPU-Accelerated Animated Fluid Mesh Backgrounds & Interactive Studio.
 
+[![Live Demo](https://img.shields.io/badge/Demo-Live%20Website-38bdf8?style=for-the-badge&logo=githubpages&logoColor=white)](https://mahesh-yennam.github.io/Lumina-Gradients-studio/)
+[![GitHub Pages](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-181717?style=for-the-badge&logo=github&logoColor=white)](https://mahesh-yennam.github.io/Lumina-Gradients-studio/)
+
+**🔗 Live Website**: [https://mahesh-yennam.github.io/Lumina-Gradients-studio/](https://mahesh-yennam.github.io/Lumina-Gradients-studio/)
+
 ![Lumina Gradients Preview](preview.png)
 
 ---
