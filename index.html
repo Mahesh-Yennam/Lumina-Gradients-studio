@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#090a16">
+  <meta name="description" content="Next-Gen Animated Mesh Gradient Studio - Smooth, GPU-accelerated fluid gradients with interactive controls and one-click CSS export.">
+  <title>Lumina Gradients — Next-Gen Fluid Mesh Backgrounds</title>
+  
+  <!-- Favicon & Web Manifest -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- OpenGraph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lumina Gradients — Next-Gen Fluid Mesh Backgrounds">
+  <meta property="og:description" content="GPU-accelerated animated fluid mesh gradient backgrounds and interactive studio.">
+  <meta property="og:image" content="preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Lumina Gradients — Next-Gen Fluid Mesh Backgrounds">
+  <meta name="twitter:description" content="GPU-accelerated animated fluid mesh gradient backgrounds and interactive studio.">
+  <meta name="twitter:image" content="preview.png">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- GPU-Accelerated Dynamic Mesh Background -->
+  <div class="mesh-wrapper" id="mesh-wrapper" aria-hidden="true">
+    <div class="mesh-orb orb-1"></div>
+    <div class="mesh-orb orb-2"></div>
+    <div class="mesh-orb orb-3"></div>
+    <div class="mesh-orb orb-4"></div>
+    <div class="mesh-orb orb-5"></div>
+    <div class="cursor-orb" id="cursor-orb"></div>
+  </div>
+
+  <!-- Micro Film Grain Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Main Application Container -->
+  <div class="app-container" id="app-container">
+    
+    <!-- Top Bar Navigation -->
+    <header class="app-header">
+      <div class="brand-badge">
+        <span class="status-dot"></span>
+        <span>Lumina Gradient Studio</span>
+      </div>
+
+      <div class="header-actions">
+        <!-- Pure View / Zen Mode Header Button -->
+        <button class="header-btn" id="btn-zen-header" type="button" title="Pure View: Hide all UI (Shortcut: Z)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          <span class="btn-label-desktop">Pure View</span>
+        </button>
+
+        <!-- Fullscreen Header Button -->
+        <button class="header-btn" id="btn-fullscreen-header" type="button" title="Toggle Fullscreen (Shortcut: F)">
+          <svg class="icon-expand" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+          </svg>
+          <svg class="icon-compress" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+          </svg>
+          <span class="btn-label-desktop">Fullscreen</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Center Showcase Glassmorphic Card -->
+    <main class="hero-card" id="hero-card">
+      <div class="card-top-bar">
+        <div class="hero-subtitle">Live Palette Preview</div>
+        <button class="btn-minimize-card" id="btn-hide-hero" type="button" title="Hide Center Card (Show Background)" aria-label="Hide Center Card">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <h1 class="hero-title" id="hero-title">Cosmic Nebula</h1>
+      <p class="hero-description">
+        Continuous multi-point fluid organic gradients engineered for optimal frame rates and visual depth.
+      </p>
+
+      <!-- Swatches Bar -->
+      <div class="swatches-bar" id="swatches-container" aria-label="Color swatches">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Quick CSS Export Container -->
+      <div class="code-container">
+        <span class="code-text" id="code-display">background: linear-gradient(...);</span>
+        <button class="btn-copy" id="btn-copy" type="button" title="Copy full CSS rule">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span>Copy CSS</span>
+        </button>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card-actions">
+        <button class="btn-primary" id="btn-shuffle" type="button" title="Generate harmonic random gradient (Shortcut: Space)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 3 21 3 21 8"></polyline>
+            <line x1="4" y1="20" x2="21" y2="3"></line>
+            <polyline points="21 16 21 21 16 21"></polyline>
+            <line x1="15" y1="15" x2="21" y2="21"></line>
+            <line x1="4" y1="4" x2="9" y2="9"></line>
+          </svg>
+          <span>Harmonic Shuffle</span>
+        </button>
+      </div>
+    </main>
+
+    <!-- Floating Restore Center Card Button (Visible when hero card is hidden) -->
+    <button class="btn-restore-card" id="btn-show-hero" type="button" title="Show Center Info Card">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="9" y1="9" x2="15" y2="9"></line>
+        <line x1="9" y1="13" x2="15" y2="13"></line>
+        <line x1="9" y1="17" x2="11" y2="17"></line>
+      </svg>
+      <span>Show Palette Card</span>
+    </button>
+
+    <!-- Bottom Interactive Control Dock -->
+    <nav class="controller-dock" id="controller-dock" aria-label="Gradient controls">
+      
+      <!-- Row 1: Presets Header with Scroll Arrows & View Toggle -->
+      <div class="presets-header-bar">
+        <span class="presets-bar-title">Curated Palettes</span>
+        <div class="presets-nav-controls">
+          <button class="nav-arrow-btn" id="btn-scroll-left" type="button" title="Scroll Left" aria-label="Scroll Left">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="nav-arrow-btn" id="btn-scroll-right" type="button" title="Scroll Right" aria-label="Scroll Right">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+          <button class="view-mode-btn" id="btn-toggle-grid" type="button" title="Toggle Grid / Scroll View">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span class="view-mode-label" id="grid-btn-text">Grid View</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Presets Track with Visible Custom Glass Scrollbar -->
+      <div class="dock-row-presets" id="presets-container">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <!-- Row 2: Tooling & Controls -->
+      <div class="dock-row-tools">
+        <!-- Play / Pause, Ambient Light, Zen Mode & Fullscreen -->
+        <div class="tool-group">
+          <span class="tool-label">Playback:</span>
+          <button class="tool-btn" id="btn-play-pause" type="button" title="Toggle animation play/pause (Shortcut: P)">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="4" width="4" height="16"></rect>
+              <rect x="14" y="4" width="4" height="16"></rect>
+            </svg>
+          </button>
+
+          <button class="tool-btn" id="btn-ambient" type="button" title="Toggle interactive pointer light spotlight">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path>
+            </svg>
+          </button>
+
+          <button class="tool-btn" id="btn-zen-dock" type="button" title="Pure View: Hide all UI (Shortcut: Z)">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+
+          <button class="tool-btn" id="btn-fullscreen-dock" type="button" title="Toggle Fullscreen (Shortcut: F)">
+            <svg class="icon-expand" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+            </svg>
+            <svg class="icon-compress" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+              <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Animation Speed Multiplier -->
+        <div class="tool-group">
+          <span class="tool-label">Speed:</span>
+          <div class="speed-segmented" role="radiogroup" aria-label="Animation speed">
+            <button class="speed-opt" type="button" data-speed="slow">Slow</button>
+            <button class="speed-opt active" type="button" data-speed="normal">Normal</button>
+            <button class="speed-opt" type="button" data-speed="fast">Fast</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Floating Exit Pure View Button (Visible only when in Zen / Pure View mode) -->
+  <button class="floating-zen-exit" id="btn-exit-zen" type="button" title="Exit Pure View (Shortcut: Esc or Z)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></line>
+      <line x1="1" y1="1" x2="23" y2="23"></line>
+    </svg>
+    <span>Show UI Controls</span>
+  </button>
+
+  <!-- Toast Notification Feedback -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-message">Gradient copied!</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
