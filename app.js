@@ -276,6 +276,8 @@ background-image:
     isZenMode = !isZenMode;
     appContainer.classList.toggle('zen-active', isZenMode);
     floatingZenExit.classList.toggle('visible', isZenMode);
+    const topNav = document.getElementById('top-nav-ribbon');
+    if (topNav) topNav.classList.toggle('zen-active', isZenMode);
 
     if (isZenMode) {
       showToast('Pure View: ON (Press Esc to exit)');
